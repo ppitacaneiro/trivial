@@ -21,3 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('players','PlayerController@store');
 
 Route::get('categories','CategoryController@index');
+Route::get('categories/questions/{id}','CategoryController@questions');
+
+Route::get('questions','QuestionController@index');
+Route::get('questions/{id}','QuestionController@show');
