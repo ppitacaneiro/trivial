@@ -17,9 +17,11 @@ class AnswerTableSeeder extends Seeder
         $faker = \Faker\Factory::create();
 
         $questions = App\Question::all();
-
+        
         foreach ($questions as $question)
         {
+            $corrects = $this->generateBooleanCorrectsAnswer();
+
             for ($i = 0;$i < 4;$i++)
             {
                 Answer::create
@@ -27,10 +29,27 @@ class AnswerTableSeeder extends Seeder
                     [
                         'question_id' => $question->id,
                         'title' => $faker->sentence,
-                        'correct' => $faker->boolean
+                        'correct' => $corrects[$i]
                     ]
                 );
             }
         }
+    }
+
+    private function generateBooleanCorrectsAnswer()
+    {
+        $booleans = [];
+        $position = rand(0,3);
+        $booleans[$position] = true;
+
+        for ($i = 0;$i < 4;$i++)
+        {
+            if ($i != $position)
+            {
+                $booleans[$i] = false;
+            }
+        }
+
+        return $booleans;
     }
 }
