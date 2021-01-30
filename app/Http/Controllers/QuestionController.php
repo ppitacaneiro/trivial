@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Answer;
 use App\Question;
 use Illuminate\Http\Request;
 
@@ -19,6 +20,13 @@ class QuestionController extends Controller
         $question = Question::find($id);
 
         return response()->json($question,200);
+    }
+
+    public function answers($questionId)
+    {
+        $answers = Question::find($questionId)->answers()->get();
+
+        return response()->json($answers,200);
     }
 
 }

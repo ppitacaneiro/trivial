@@ -14,14 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::post('players','PlayerController@store');
 
 Route::get('categories','CategoryController@index');
-Route::get('categories/questions/{id}','CategoryController@questions');
+Route::get('categories/questions/{category_id}','CategoryController@questions');
 
 Route::get('questions','QuestionController@index');
 Route::get('questions/{id}','QuestionController@show');
+Route::get('questions/answers/{question_id}','QuestionController@answers');
+
+Route::post('rankings','RankingController@store');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Question;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
