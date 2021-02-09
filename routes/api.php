@@ -16,8 +16,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('players','PlayerController@store');
 
-Route::get('categories','CategoryController@index');
+Route::get('categories','CategoryController@index')->middleware('cors');
 Route::get('categories/questions/{category_id}','CategoryController@questions');
+Route::get('categories/questions/answers/{category_id}','CategoryController@questionsWithAnswers');
 
 Route::get('questions','QuestionController@index');
 Route::get('questions/{id}','QuestionController@show');
