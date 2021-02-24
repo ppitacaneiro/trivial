@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
+use App\Player;
 use App\Ranking;
 use Illuminate\Http\Request;
 
@@ -30,6 +32,29 @@ class RankingController extends Controller
         
         $rankings = Ranking::all();
 
-        return response()->json($rankings,200);
+        foreach ($rankings as $ranking) {
+
+            $player = Player::find($ranking->player_id);
+            $playerName = $player->nickname;
+
+            $category = Category::find($ranking->category_id);
+            $categoryName = $category->name;
+
+            $dataRankings[] = array
+            (
+                'player_id' => $ranking->player_id,
+                'player_name' => $playerName,
+                'category_id' => $ranking->category_id,
+                'category_name' => $categoryName,
+                'hits' => $ranking->hits,
+                'errors' => $ranking->errors,
+                'score' => $ranking->score,
+                'time' => $ranking->time,
+                'register_at_date' => $ranking->register_at_date,
+                'register_at_time' => $ranking->register_at_time,
+            );
+        }
+
+        return response()->json($dataRankings,200);
     }
 }
