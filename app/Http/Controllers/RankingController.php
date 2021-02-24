@@ -30,7 +30,7 @@ class RankingController extends Controller
 
     public function index() {
         
-        $rankings = Ranking::all();
+        $rankings = Ranking::all()->sortByDesc('score');
 
         foreach ($rankings as $ranking) {
 
