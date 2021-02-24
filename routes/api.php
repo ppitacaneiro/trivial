@@ -25,3 +25,4 @@ Route::get('questions/{id}','QuestionController@show');
 Route::get('questions/answers/{question_id}','QuestionController@answers');
 
 Route::post('rankings','RankingController@store');
+Route::get('rankings','RankingController@index');

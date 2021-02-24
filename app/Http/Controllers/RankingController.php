@@ -25,4 +25,11 @@ class RankingController extends Controller
 
         return response()->json($ranking,201);
     }
+
+    public function index() {
+        
+        $rankings = Ranking::all();
+
+        return response()->json($rankings,200);
+    }
 }
